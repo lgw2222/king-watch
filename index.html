@@ -1,0 +1,574 @@
+<title>The King Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Special+Elite&display=swap">
+<style>
+  :root{
+    --ground:#121c14;
+    --ground-2:#1a2a1e;
+    --vignette: radial-gradient(ellipse at 50% -10%, #24352a 0%, #121c14 55%, #0b120d 100%);
+    --paper:#efe6c9;
+    --paper-shadow:#d8cca3;
+    --paper-edge:#c7b98c;
+    --ink:#26291c;
+    --ink-soft:#5c5940;
+    --accent:#8a3025;
+    --accent-soft:#c96a57;
+    --brass:#a3812f;
+    --brass-bright:#c9a24a;
+    --verdigris:#3f6e5c;
+    --verdigris-soft:#7fa694;
+    --rule:#b7a97c;
+    --font-display:'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body:'Lora', Georgia, 'Times New Roman', serif;
+    --font-type:'Special Elite', 'Courier New', Courier, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ margin:0; padding:0; }
+
+  body{
+    background:var(--ground);
+    background-image:
+      var(--vignette),
+      repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+    color:var(--paper);
+    font-family:var(--font-body);
+    line-height:1.55;
+    padding-block: 48px 64px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .desk{
+    max-width: 780px;
+    margin: 0 auto;
+    padding-inline: 18px;
+  }
+
+  a{ color:var(--verdigris-soft); }
+
+  :focus-visible{
+    outline: 2px solid var(--brass-bright);
+    outline-offset: 3px;
+  }
+
+  .masthead{
+    text-align:center;
+    color: var(--paper-shadow);
+    margin-bottom: 22px;
+  }
+  .masthead .kicker{
+    font-family: var(--font-type);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--verdigris-soft);
+  }
+  .masthead h1{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    color: var(--paper);
+    margin: 6px 0 4px;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+  .masthead .sub{
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--paper-shadow);
+  }
+
+  /* ---- Journal card ---- */
+  .journal{
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 34px 30px 26px 46px;
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,0.65),
+      0 2px 0 var(--paper-edge) inset;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(90,80,40,0.05) 0px, rgba(90,80,40,0.05) 1px, transparent 1px, transparent 34px);
+  }
+
+  .binding{
+    position:absolute;
+    left: 14px;
+    top: 20px;
+    bottom: 20px;
+    width: 10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .binding span{
+    display:block;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: var(--ground);
+    box-shadow: inset 0 0 0 2px var(--paper-edge), 0 1px 1px rgba(0,0,0,0.3);
+  }
+
+  .report-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--font-type);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+
+  .stamp{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    align-self:flex-start;
+    transform: rotate(-2.5deg);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-type);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    padding: 7px 14px;
+    border-radius: 4px;
+    margin: 4px 0 20px;
+    animation: stampin 0.5s ease-out;
+  }
+  @keyframes stampin{
+    0%{ transform: rotate(-2.5deg) scale(1.6); opacity:0; }
+    60%{ opacity:1; }
+    100%{ transform: rotate(-2.5deg) scale(1); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .stamp{ animation: none; }
+  }
+
+  h2.section{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--verdigris);
+    margin: 30px 0 12px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  h2.section::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--rule);
+  }
+  h2.section svg{ flex-shrink:0; }
+
+  .field-note{
+    font-family: var(--font-type);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 62ch;
+  }
+  .field-note b{
+    color: var(--accent);
+    font-weight: 400;
+    border-bottom: 1px dotted var(--accent-soft);
+  }
+
+  .details{
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px 26px;
+  }
+  .detail dt{
+    font-family: var(--font-type);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-bottom: 4px;
+  }
+  .detail dd{
+    margin:0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .signal{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:16px;
+  }
+  .signal i{
+    display:block;
+    width:5px;
+    background: var(--paper-edge);
+    border-radius: 1px;
+  }
+  .signal i:nth-child(1){ height:30%; }
+  .signal i:nth-child(2){ height:50%; }
+  .signal i:nth-child(3){ height:65%; }
+  .signal i:nth-child(4){ height:82%; }
+  .signal i:nth-child(5){ height:100%; }
+  .signal i.on{ background: var(--verdigris); }
+
+  .confidence-label{
+    font-family: var(--font-type);
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  /* species card */
+  .species{
+    margin-top: 14px;
+    position: relative;
+    background: #f6efd8;
+    border: 1px solid var(--paper-edge);
+    padding: 18px 20px;
+    transform: rotate(0.6deg);
+    box-shadow: 0 8px 18px -10px rgba(0,0,0,0.4);
+  }
+  .species::before{
+    content:"";
+    position:absolute;
+    top:-10px; left: 34px;
+    width: 56px; height: 20px;
+    background: rgba(163,129,47,0.35);
+    transform: rotate(-4deg);
+  }
+  .species h3{
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .species dl{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    margin:0;
+    font-size: 0.92rem;
+  }
+  .species dt{
+    font-family: var(--font-type);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .species dd{ margin:0; }
+
+  /* ledger */
+  .ledger{
+    margin-top: 8px;
+    border-top: 1px solid var(--rule);
+  }
+  .ledger-row{
+    display:grid;
+    grid-template-columns: 74px 1fr auto;
+    gap: 12px;
+    align-items:center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ledger-row .date{
+    font-family: var(--font-type);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+  .ledger-row .what{
+    font-size: 0.94rem;
+  }
+  .ledger-row .what .city{
+    color: var(--verdigris);
+    font-weight: 600;
+  }
+  .ledger-row .signal{ height:12px; }
+  .ledger-row .signal i{ width:4px; }
+
+  @media (max-width: 480px){
+    .ledger-row{
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .ledger-row .signal{ justify-self: flex-start; }
+  }
+
+  footer.disclaimer{
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 2px dashed var(--paper-edge);
+  }
+  .rubber-stamp{
+    display:inline-block;
+    transform: rotate(2deg);
+    border: 3px double var(--accent);
+    color: var(--accent);
+    font-family: var(--font-type);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+  .fine-print{
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .credits{
+    text-align:center;
+    color: var(--paper-shadow);
+    font-family: var(--font-type);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 22px;
+    opacity: 0.7;
+  }
+</style>
+
+<div class="desk">
+  <header class="masthead">
+    <div class="kicker">Unofficial Migration Log</div>
+    <h1>The King Watch</h1>
+    <div class="sub">field notes on the midday movements of a species of one</div>
+  </header>
+
+  <main class="journal" role="main">
+    <div class="binding" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="report-row">
+      <span id="report-no">Field Report No. 000</span>
+      <span id="report-date">—</span>
+    </div>
+
+    <div class="stamp" id="stamp-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Sighting logged
+    </div>
+
+    <p class="field-note" id="field-note">Loading today's log&hellip;</p>
+
+    <dl class="details">
+      <div class="detail">
+        <dt>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 12l4-6-2 7-6 2 4-3z" fill="currentColor"/></svg>
+          Habitat
+        </dt>
+        <dd id="detail-city">—</dd>
+      </div>
+      <div class="detail">
+        <dt>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19c0-3 3-5 6-5m4 5c0-2.5-1-4-2.5-4.7M8 10a3 3 0 100-6 3 3 0 000 6zm7-1a2.4 2.4 0 100-4.8 2.4 2.4 0 000 4.8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Party
+        </dt>
+        <dd id="detail-party">—</dd>
+      </div>
+      <div class="detail">
+        <dt>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v6M7 3c-1.5 0-2 1-2 2.5S6 9 7 9m0-6c1.5 0 2 1 2 2.5S8 9 7 9m0 0v12M17 3v18M14 6h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          On the table
+        </dt>
+        <dd id="detail-dish">—</dd>
+      </div>
+      <div class="detail">
+        <dt>Confidence</dt>
+        <dd>
+          <div class="signal" id="signal-main" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <span class="confidence-label" id="confidence-label">—</span>
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="section">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-3 3-5 6.5-5 10a5 5 0 0010 0c0-3.5-2-7-5-10z" stroke="currentColor" stroke-width="1.6"/></svg>
+      Species Notes
+    </h2>
+    <div class="species">
+      <h3>Regalis lebronus</h3>
+      <dl>
+        <dt>Common name</dt><dd>The King</dd>
+        <dt>Family</dt><dd>Cavaliersidae, later Lakersidae</dd>
+        <dt>Natal range</dt><dd>Akron, Ohio</dd>
+        <dt>Current range</dt><dd>Southern California, with seasonal drift</dd>
+        <dt>Diet</dt><dd>High-protein, recovery-forward, occasional birria</dd>
+        <dt>Status</dt><dd>Not endangered. Extremely online.</dd>
+      </dl>
+    </div>
+
+    <h2 class="section">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.6"/></svg>
+      Prior Sightings
+    </h2>
+    <div class="ledger" id="ledger"></div>
+
+    <footer class="disclaimer">
+      <div class="rubber-stamp">satire &middot; not real data</div>
+      <p class="fine-print">The King Watch is an unofficial, non-affiliated fan project made purely for entertainment. Every "sighting" above is procedurally generated from the date by a script in this page — none of it reflects real information about LeBron James, his schedule, or any restaurant named or implied. The log resets automatically at midnight, your local time.</p>
+    </footer>
+  </main>
+
+  <div class="credits">est. today &middot; recompiled daily &middot; no lunches were harmed</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function xmur3(str){
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+      h = (h << 13) | (h >>> 19);
+    }
+    return function(){
+      h = Math.imul(h ^ (h >>> 16), 2246822507);
+      h = Math.imul(h ^ (h >>> 13), 3266489909);
+      h ^= h >>> 16;
+      return h >>> 0;
+    };
+  }
+  function mulberry32(a){
+    return function(){
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function makeRng(seedStr){
+    const seedFn = xmur3(seedStr);
+    return mulberry32(seedFn());
+  }
+  function pick(rng, arr){ return arr[Math.floor(rng() * arr.length)]; }
+  function pad(n){ return n < 10 ? "0" + n : "" + n; }
+  function isoDate(d){ return d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()); }
+  function dayOfYear(d){
+    const start = new Date(d.getFullYear(), 0, 0);
+    const diff = d - start;
+    return Math.floor(diff / 86400000);
+  }
+
+  const CITIES = [
+    { name: "Brentwood, CA", note: "coastal canopy, dense with agents and juice bars" },
+    { name: "Beverly Hills, CA", note: "manicured territory, high hedge cover" },
+    { name: "Bel-Air, CA", note: "gated hillside range, rarely approached on foot" },
+    { name: "Las Vegas, NV", note: "high-glare habitat, frequent flash exposure" },
+    { name: "Akron, OH", note: "ancestral breeding ground, seasonal return migration" },
+    { name: "Miami, FL", note: "humid winter range, favored during All-Star season" },
+    { name: "Malibu, CA", note: "coastal bluff territory, sightings often from a distance" },
+    { name: "South Beach, FL", note: "warm-water range, shared with several other species" },
+    { name: "Paris, France", note: "rare offseason range extension" },
+    { name: "The Bahamas", note: "offseason migratory grounds, low sighting density" }
+  ];
+  const VENUES = [
+    "modern steakhouse", "omakase sushi counter", "celebrity-owned trattoria",
+    "cold-pressed juice bar", "poke and grain bowl spot", "upscale taco stand",
+    "Mediterranean mezze lounge", "members-only dining room", "birria and consomme truck",
+    "plant-forward brunch cafe"
+  ];
+  const DISHES = [
+    "a 42-ounce dry-aged tomahawk", "an 18-piece omakase tasting", "truffle tagliatelle",
+    "a dragon-fruit recovery smoothie", "an ahi poke power bowl", "triple birria tacos with consomme",
+    "an off-menu wagyu smash burger", "branzino crudo", "a double acai bowl", "lamb chops with harissa yogurt"
+  ];
+  const PARTIES = [
+    "a rotating cast of training-camp teammates", "two members of his podcast crew",
+    "a business-partner-slash-childhood-friend", "a single unnamed security escort",
+    "his usual four-top of confidants", "a visiting Ohio recruit", "an entourage of exactly six",
+    "no visible companions -- a rare solo sighting"
+  ];
+  const BEHAVIORS = [
+    "lingered for 94 uninterrupted minutes", "departed within 22 minutes via a side exit",
+    "requested a corner booth with sightlines to both doors", "sent an aide ahead to scout the patio first",
+    "was reseated once, for reasons unclear", "ordered for the whole table without opening a menu",
+    "left a reportedly enormous tip, per a busser's account", "was gone before the valet could bring the car around"
+  ];
+  const TEMPLATES = [
+    (c,v,d,p,b) => `Field team clocked The King at a ${v} in <b>${c}</b> shortly after noon. He was seen with ${p} and reportedly worked through <b>${d}</b>. He ${b}.`,
+    (c,v,d,p,b) => `Midday activity logged in <b>${c}</b>: a visit to a ${v}, with <b>${d}</b> on the table and ${p} nearby. Observed behavior: he ${b}.`,
+    (c,v,d,p,b) => `Lunch-window sighting -- <b>${c}</b>, a ${v}. <b>${d}</b> was spotted mid-bite. Party included ${p}. Notable: he ${b}.`,
+    (c,v,d,p,b) => `Per a single anonymous tip, The King surfaced at a ${v} in <b>${c}</b>, accompanied by ${p} and working through <b>${d}</b>. He ${b}.`
+  ];
+  const CONF_LABELS = ["Pure Speculation", "Unverified Whisper", "Plausible", "Highly Likely", "Confirmed"];
+
+  function generateSighting(dateObj){
+    const rng = makeRng(isoDate(dateObj) + "-king-lunch");
+    const city = pick(rng, CITIES);
+    const venue = pick(rng, VENUES);
+    const dish = pick(rng, DISHES);
+    const party = pick(rng, PARTIES);
+    const behavior = pick(rng, BEHAVIORS);
+    const template = pick(rng, TEMPLATES);
+    const confidence = 1 + Math.floor(rng() * 5);
+    const note = template(city.name, venue, dish, party, behavior);
+    return { city, venue, dish, party, behavior, confidence, note };
+  }
+
+  function renderSignal(container, level){
+    container.innerHTML = "";
+    for (let i = 1; i <= 5; i++){
+      const bar = document.createElement("i");
+      if (i <= level) bar.className = "on";
+      container.appendChild(bar);
+    }
+  }
+
+  const today = new Date();
+  const sighting = generateSighting(today);
+
+  document.getElementById("report-no").textContent = "Field Report No. " + pad(dayOfYear(today) % 1000);
+  document.getElementById("report-date").textContent = today.toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric", year: "numeric" }).toUpperCase();
+  document.getElementById("field-note").innerHTML = sighting.note;
+  document.getElementById("detail-city").innerHTML = sighting.city.name + "<br><span style=\"font-size:0.82em;color:var(--ink-soft);font-style:italic;\">" + sighting.city.note + "</span>";
+  document.getElementById("detail-party").textContent = sighting.party.replace(/^./, s => s.toUpperCase());
+  document.getElementById("detail-dish").textContent = sighting.dish.replace(/^./, s => s.toUpperCase());
+  document.getElementById("confidence-label").textContent = CONF_LABELS[sighting.confidence - 1];
+  renderSignal(document.getElementById("signal-main"), sighting.confidence);
+
+  const ledger = document.getElementById("ledger");
+  for (let i = 1; i <= 6; i++){
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const s = generateSighting(d);
+    const row = document.createElement("div");
+    row.className = "ledger-row";
+    const sig = document.createElement("div");
+    sig.className = "signal";
+    row.innerHTML =
+      '<div class="date">' + d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) + '</div>' +
+      '<div class="what"><span class="city">' + s.city.name + '</span> &mdash; ' + s.venue + ", " + s.dish + '</div>';
+    row.appendChild(sig);
+    renderSignal(sig, s.confidence);
+    ledger.appendChild(row);
+  }
+})();
+</script>
